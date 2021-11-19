@@ -1,0 +1,8 @@
+{
+  "firstName": "Ayush",	"lastName": "Dhananjai",	"handle": "ayushdj", "id": 1234,
+  "profilePicture": "../../../images/profilePic.png", "bannerPicture": "../../../images/coverPhoto.png",
+  "bio": "Software Engineer, Web Developer, Graduate Student. +65 | +971 | +1",
+  "website": "youtube.com/webdevtv",
+  "location": "Boston, MA",	"dateOfBirth": "February 13, 1997", "dateJoined": "June 2013",
+  "followingCount": 69,	"followersCount": 420
+}
