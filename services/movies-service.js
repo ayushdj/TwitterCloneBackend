@@ -12,6 +12,8 @@ module.exports = (app) => {
         movies = movies.filter(m => m._id !== id);
         res.json(movies);
     };
+    app.delete('/api/movies/:mid', deleteMovie);
+
 
 
     const createMovie = (req, res) => {
