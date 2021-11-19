@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+app.get('/hello', (req, res) => {
+    res.send('Hello World!!');
+});
+
 require('./services/movies-service')(app);
 require('./services/tweeter-service')(app);
 require('./services/profile-service')(app);
