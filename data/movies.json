@@ -1,0 +1,5 @@
+[
+{"_id":{"$oid":"619ea4c5f4fe461423afcddc"},"title":"Aliens","rating":4.5},
+{"_id":{"$oid":"619ea4f0f4fe461423afcddd"},"title":"Terminator","rating":4.5},
+{"_id":{"$oid":"619eab4cf4fe461423afcde0"},"title":"something","rating":4.9}
+]
