@@ -1,0 +1,157 @@
+> show dbs
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+travelScraps  0.000GB
+webdev        0.000GB
+> use webdev
+switched to db webdev
+> db.movies.insert({title: 'Aliens', rating: 4.5})
+WriteResult({ "nInserted" : 1 })
+> show dbs
+admin         0.000GB
+config        0.000GB
+local         0.000GB
+travelScraps  0.000GB
+webdev        0.000GB
+> db.movies.find();
+{ "_id" : ObjectId("619ea4c5f4fe461423afcddc"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("619ea4f0f4fe461423afcddd"), "title" : "Terminator", "rating" : 4.5 }
+{ "_id" : ObjectId("619eab4cf4fe461423afcde0"), "title" : "something", "rating" : 4.9 }
+{ "_id" : ObjectId("61a6d7f17232c2751a17b739"), "title" : "Aliens", "rating" : 4.5 }
+> db.movies.insert({title: 'Spiderman', rating: 5.0})
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({title: 'Avengers', rating: 4.9})
+WriteResult({ "nInserted" : 1 })
+> db.movies.insert({title: 'Interstellar', rating: 4.4})
+WriteResult({ "nInserted" : 1 })
+> db.movies.find({_id:ObjectId("619ea4c5f4fe461423afcddc")})
+{ "_id" : ObjectId("619ea4c5f4fe461423afcddc"), "title" : "Aliens", "rating" : 4.5 }
+> db.movies.find({title: 'Aliens'});
+{ "_id" : ObjectId("619ea4c5f4fe461423afcddc"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("61a6d7f17232c2751a17b739"), "title" : "Aliens", "rating" : 4.5 }
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("619ea4c5f4fe461423afcddc"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619ea4f0f4fe461423afcddd"),
+	"title" : "Terminator",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619eab4cf4fe461423afcde0"),
+	"title" : "something",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("61a6d7f17232c2751a17b739"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("61a6d8227232c2751a17b73a"),
+	"title" : "Spiderman",
+	"rating" : 5
+}
+{
+	"_id" : ObjectId("61a6d82e7232c2751a17b73b"),
+	"title" : "Avengers",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("61a6d83e7232c2751a17b73c"),
+	"title" : "Interstellar",
+	"rating" : 4.4
+}
+> db.movies.updateOne({title: 'Interstellar'}, {rating: 4.9})
+uncaught exception: Error: the update operation document must contain atomic operators :
+DBCollection.prototype.updateOne@src/mongo/shell/crud_api.js:565:19
+@(shell):1:1
+> db.movies.update({title: 'Interstellar'}, {rating: 4.9})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.movies.find.pretty()
+uncaught exception: TypeError: db.movies.find.pretty is not a function :
+@(shell):1:1
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("619ea4c5f4fe461423afcddc"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619ea4f0f4fe461423afcddd"),
+	"title" : "Terminator",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619eab4cf4fe461423afcde0"),
+	"title" : "something",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("61a6d7f17232c2751a17b739"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("61a6d8227232c2751a17b73a"),
+	"title" : "Spiderman",
+	"rating" : 5
+}
+{
+	"_id" : ObjectId("61a6d82e7232c2751a17b73b"),
+	"title" : "Avengers",
+	"rating" : 4.9
+}
+{ "_id" : ObjectId("61a6d83e7232c2751a17b73c"), "rating" : 4.9 }
+> db.movies.update({title: 'Interstellar'}, {title:'Interstellar', rating: 4.9})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.movies.update({title: 'Interstellar'}, {title:'Interstellar' rating: 4.9})
+uncaught exception: SyntaxError: missing } after property list :
+@(shell):1:64
+> db.movies.update({title: 'Interstellar'}, {title:'Interstellar', rating: 4.6})
+WriteResult({ "nMatched" : 0, "nUpserted" : 0, "nModified" : 0 })
+> db.movies.find().pretty()
+{
+	"_id" : ObjectId("619ea4c5f4fe461423afcddc"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619ea4f0f4fe461423afcddd"),
+	"title" : "Terminator",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("619eab4cf4fe461423afcde0"),
+	"title" : "something",
+	"rating" : 4.9
+}
+{
+	"_id" : ObjectId("61a6d7f17232c2751a17b739"),
+	"title" : "Aliens",
+	"rating" : 4.5
+}
+{
+	"_id" : ObjectId("61a6d8227232c2751a17b73a"),
+	"title" : "Spiderman",
+	"rating" : 5
+}
+{
+	"_id" : ObjectId("61a6d82e7232c2751a17b73b"),
+	"title" : "Avengers",
+	"rating" : 4.9
+}
+{ "_id" : ObjectId("61a6d83e7232c2751a17b73c"), "rating" : 4.9 }
+> db.movies.deleteOne({_id:ObjectId("61a6d83e7232c2751a17b73c")})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.movies.find();
+{ "_id" : ObjectId("619ea4c5f4fe461423afcddc"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("619ea4f0f4fe461423afcddd"), "title" : "Terminator", "rating" : 4.5 }
+{ "_id" : ObjectId("619eab4cf4fe461423afcde0"), "title" : "something", "rating" : 4.9 }
+{ "_id" : ObjectId("61a6d7f17232c2751a17b739"), "title" : "Aliens", "rating" : 4.5 }
+{ "_id" : ObjectId("61a6d8227232c2751a17b73a"), "title" : "Spiderman", "rating" : 5 }
+{ "_id" : ObjectId("61a6d82e7232c2751a17b73b"), "title" : "Avengers", "rating" : 4.9 }
